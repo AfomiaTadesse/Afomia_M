@@ -39,7 +39,7 @@ func main() {
 	movieCtrl := controller.NewMovieController(movieUsecase)
 
 	// Setup router with both controllers
-	r := router.SetupRouter(userCtrl, movieCtrl)
+	r := router.SetupRouter(userCtrl, movieCtrl,cfg.JWTSecret)
 
 	// Start server
 	if err := r.Run(":" + cfg.Port); err != nil {

@@ -114,7 +114,7 @@ func (uc *movieUsecase) UpdateMovie(id, userID string, req *domain.UpdateMovieRe
 		Trailer:     req.Trailer,
 		Actors:      req.Actors,
 		Genres:      req.Genres,
-		UserID:      movie.UserID, // Keep original user ID
+		UserID:      movie.UserID, 
 	}
 
 	err = uc.movieRepo.Update(context.Background(), id, updatedMovie)
@@ -130,7 +130,6 @@ func (uc *movieUsecase) UpdateMovie(id, userID string, req *domain.UpdateMovieRe
 }
 
 func (uc *movieUsecase) DeleteMovie(id, userID string) (*domain.BaseResponse, error) {
-	// Verify movie exists and belongs to user
 	movie, err := uc.movieRepo.GetByID(context.Background(), id)
 	if err != nil {
 		return &domain.BaseResponse{
@@ -139,7 +138,6 @@ func (uc *movieUsecase) DeleteMovie(id, userID string) (*domain.BaseResponse, er
 		}, nil
 	}
 
-	// Check ownership
 	if movie.UserID.Hex() != userID {
 		return &domain.BaseResponse{
 			Success: false,

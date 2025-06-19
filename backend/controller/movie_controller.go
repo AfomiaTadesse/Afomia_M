@@ -28,7 +28,6 @@ func (ctrl *MovieController) CreateMovie(c *gin.Context) {
 		return
 	}
 
-	// Get userID from context (set by auth middleware)
 	userID, _ := c.Get("userID")
 	req.UserID = userID.(string)
 
@@ -105,7 +104,6 @@ func (ctrl *MovieController) UpdateMovie(c *gin.Context) {
 		return
 	}
 
-	// Get userID from context (set by auth middleware)
 	userID, _ := c.Get("userID")
 
 	response, err := ctrl.movieUsecase.UpdateMovie(id, userID.(string), &req)
@@ -128,7 +126,6 @@ func (ctrl *MovieController) UpdateMovie(c *gin.Context) {
 func (ctrl *MovieController) DeleteMovie(c *gin.Context) {
 	id := c.Param("id")
 	
-	// Get userID from context (set by auth middleware)
 	userID, _ := c.Get("userID")
 
 	response, err := ctrl.movieUsecase.DeleteMovie(id, userID.(string))

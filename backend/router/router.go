@@ -9,6 +9,8 @@ import (
 func SetupRouter(
 	userCtrl *controller.UserController,
 	movieCtrl *controller.MovieController,
+	jwtSecret string, 
+
 ) *gin.Engine {
 	router := gin.Default()
 
@@ -23,7 +25,7 @@ func SetupRouter(
 
 		// Movie routes (auth required)
 		movieRoutes := api.Group("/movies")
-		movieRoutes.Use(middleware.AuthMiddleware())
+		movieRoutes.Use(middleware.AuthMiddleware(jwtSecret))
 		{
 			movieRoutes.POST("/", movieCtrl.CreateMovie)
 			movieRoutes.GET("/", movieCtrl.GetMovies)

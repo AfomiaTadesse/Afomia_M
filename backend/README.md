@@ -21,8 +21,8 @@ A RESTful API for managing personal movie collections, built with Go, MongoDB, a
 ### Authentication
 | Method | Endpoint          | Description                     |
 |--------|-------------------|---------------------------------|
-| POST   | `/api/v1/auth/signup` | Register a new user           |
-| POST   | `/api/v1/auth/login`  | Login and get JWT token      |
+| POST   | `/api/v1/auth/users/signup` | Register a new user           |
+| POST   | `/api/v1/auth/users/login`  | Login and get JWT token      |
 
 ### Movies
 | Method | Endpoint                   | Description                     |

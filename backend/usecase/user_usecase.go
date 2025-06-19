@@ -84,12 +84,10 @@ func validateSignupInput(user *domain.SignupRequest) error {
         return errors.New("invalid email format")
     }
 
-    // Username validation (alphanumeric only)
     if matched, _ := regexp.MatchString(`^[a-zA-Z0-9]+$`, user.Username); !matched {
         return errors.New("username must be alphanumeric only")
     }
 
-    // Password validation
     if len(user.Password) < 8 {
         return errors.New("password must be at least 8 characters long")
     }
